@@ -6,7 +6,7 @@
 
 **Prepared by** 
 
-**Rasmiya  B210598CS  [rasmiya_b210598cs@nitc.ac.in ](mailto:rasmiya_b210598cs@nitc.ac.in)Aiswarya V S  B211258CS  [aiswarya_b211258cs@nitc.ac.in ](mailto:aiswarya_b211258cs@nitc.ac.in)Sonu Kumar Mandal                 B210590CS                        sonukumar\_b210590cs@nitc.ac.in** 
+**Lahin Saleem M P  B210476CS  [lahin_b210476cs@nitc.ac.in ](mailto:lahin_b210476cs@nitc.ac.in)Mohammed Ansar  B211268CS  [mohammed_b211268cs@nitc.ac.in ](mailto:mohammed_b211268cs@nitc.ac.in)Muhammed Ferin K                 B210486CS                        muhammed\_b210486cs@nitc.ac.in** 
 
 **Course: Software Engineering Laboratory** 
 
