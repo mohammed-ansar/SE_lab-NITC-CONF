@@ -1,4 +1,4 @@
-﻿**Software Requirements Specification ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.001.png)**
+﻿**Software Requirements Specification ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.001.png)**
 
 **for** 
 
@@ -6,7 +6,7 @@
 
 **Prepared by** 
 
-**Lahin Saleem M P  B210476CS  [lahin_b210476cs@nitc.ac.in ](mailto:lahin_b210476cs@nitc.ac.in)Mohammed Ansar  B211268CS  [mohammed_b211268cs@nitc.ac.in ](mailto:mohammed_b211268cs@nitc.ac.in)Muhammed Ferin K                 B210486CS                        muhammed\_b210486cs@nitc.ac.in** 
+**Lahin Saleem M P  B210476CS  [lahin_b210476cs@nitc.ac.in ](mailto:lahin_b210476cs@nitc.ac.in)Muhammed Ferin K  B210486CS**  muhammed\_b210486cs@nitc.ac.in **Mohammed Ansar                 B211268CS                       [ mohammed_b211268cs@nitc.ac.in** ](mailto:mohammed_b211268cs@nitc.ac.in)**
 
 **Course: Software Engineering Laboratory** 
 
@@ -14,7 +14,7 @@
 
 ***Software Requirements Specification for NITCONF*** 
 
-***Page 2 ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.002.png)***
+***Page 2 ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.002.png)***
 
 1 Introduction 1 
 
@@ -42,7 +42,7 @@ Use Case Model 7
 
 Performance Requirements  27 Safety and Security Requirements 
 
-***Page 9 ![ref1]***
+***Page 8 ![ref1]***
 |**1  Introduction** |
 | - |
 ||
@@ -73,13 +73,13 @@ This SRS document is intended for a diverse audience of stakeholders involved in
 
 This document follows the IEEE formatting requirements. 
 
-**2 Overall Description ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.004.png)**
+**2 Overall Description ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.004.png)**
 
 `  `**Product Overview** 
 
 The NITCONF Submission and Evaluation System (NSES) is a web-based platform specifically designed to facilitate the submission and evaluation of papers for the NITCONF conference. The system offers a user-friendly interface with distinct functionalities for speakers, designated reviewers, and members of the Program Committee, ensuring a seamless and efficient process. 
 
-![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.005.png)
+![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.005.png)
 
 **Product Functionality** 
 
@@ -108,7 +108,7 @@ The NITCONF Submission and Evaluation System (NSES) is a web-based platform spec
 - **Notification System:** 
 - Automated notifications will be sent to speakers following Program Committee decisions, ensuring timely communication of acceptance or rejection. 
 
-**3 Specific Requirements ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.006.png)**
+**3 Specific Requirements ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.006.png)**
 
 **External Interface Requirements** 
 
@@ -133,7 +133,9 @@ The NITCONF Submission and Evaluation System (NSES) is a web-based platform spec
 - The user interface boasts a visually appealing design with carefully chosen graphic elements, font styles, and a harmonious colour scheme. These considerations are 
   - made to optimize readability and organizational clarity, with a focus on 
 
-accommodating users with colour vision impairments. **Uniform Design Consistency:** 
+accommodating users with colour vision impairments. 
+
+**Uniform Design Consistency:** 
 
 - The NSES maintains a consistent design across its various interfaces, ensuring a cohesive and unified user experience for Program Committee members. 
 
@@ -149,11 +151,23 @@ The user interface provides comprehensive support for Program Committee tasks, i
 
 
 
-|Software Used |Description |
-| - | - |
-|Operating System |Linux Operating System |
-|Database |We have used springboot for server-side development and MySQL, an open-source relational database management system. |
-|HTML, CSS, JS |Used in the development of the front-end of the application. |
+||
+| :- |
+||
+||
+|Software Used |
+||
+|Operating System |
+|Database |
+|HTML, CSS, JS |
+
+Description 
+
+Linux Operating System 
+
+We have used springboot for server-side development and MySQL, an open-source relational database management system. 
+
+Used in the development of the front-end of the application. 
 
 `  `**Functional Requirements** 
 
@@ -165,19 +179,27 @@ The system shall provide a dedicated login link for Program Committee members to
 
 Program Committee members, upon login, shall have the ability to view detailed review comments for all submitted papers. 
 
-**F3: Decision-Making Interface:** 
+**F3: Reviewer Preferences and Expertise Profiles:** 
+
+Allow reviewers to set preferences for the types of papers they are interested in reviewing and Create reviewer profiles highlighting their areas of expertise and qualification. 
+
+**F4: Program Committee Collaborative Review Assignment:** 
+
+Program Committee members have access to assign papers to reviewers. The portal displays submitted papers and suggests reviewers based on matching algorithms that take into account their degree qualifications. 
+
+**F5: Decision-Making Interface:** 
 
 The system shall present a user-friendly interface within the Program Committee portal, allowing members to make decisions to accept or reject papers. 
 
-**F4: Decision Confirmation:** 
+**F6: Decision Confirmation:** 
 
 Upon the Program Committee member making a decision, the system shall promptly issue a confirmation message, acknowledging the acceptance or rejection of the paper. 
 
-**F5: Decision Logging:** 
+**F7: Decision Logging:** 
 
 The system shall log the decisions made by Program Committee members, maintaining a record of accepted and rejected papers. 
 
-**F6: Automated Notifications:** 
+**F8: Automated Notifications:** 
 
 Following a decision, the system shall automatically send notifications to speakers, informing them of the acceptance or rejection of their submitted papers. 
 
@@ -227,13 +249,17 @@ Purpose - To log in to the NITCONF  as a Program Committee member. Priority - Hi
 
 **Pre conditions** – 
 
-1\.The Program Committee member must have valid login credentials. 2.The NITCONF system must be accessible. 
+1\.The Program Committee member must have valid login credentials. 
+
+***Page ![ref1]***
+
+2\.The NITCONF system must be accessible. 
 
 **Post conditions** - 
 
 2. The Program Committee member successfully logs into the NITCONF system. 
 
-Actors – Program Committee Member Extends – None 
+Actors – Program Committee Member  ***10*** Extends – None 
 
 Flow of Events: 
 
@@ -249,11 +275,11 @@ Flow of Events:
 
 Includes - None Notes/Issues – None 
 
-**View Paper Reviews and Make Decisions - U16 (Program Committee Member) ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.007.png)**Author – Aiswarya 
+**View Paper Reviews and Make Decisions - U16 (Program Committee Member) ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.007.png)**Author – Aiswarya 
 
 Purpose - To view review comments of all submitted papers and make decisions to accept or reject. 
 
-Priority - High. **Preconditions -![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.008.png)**
+Priority - High. **Preconditions -![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.008.png)**
 
 1. Program Committee member must be logged into the NSES system. 
 1. Papers submitted for review should be available in the system. 
@@ -263,9 +289,7 @@ Priority - High. **Preconditions -![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda
 1. The Program Committee member successfully reviews comments and makes decisions on the submitted papers. 
 1. Acceptance or rejection decisions are recorded and communicated to relevant stakeholders. 
 
-***Page ![ref1]***
-
-Actors – Program Committee Member  ***10*** Extends – None 
+Actors – Program Committee Member  ***11*** Extends – None 
 
 Flow of Events: 
 
@@ -286,7 +310,7 @@ Includes - None Notes/Issues -
 
 ***Software Requirements Specification for Car Rental Management System  Page 12 ![ref1]***
 
-**4 Other Non-functional Requirements ![](Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.009.png)**
+**4 Other Non-functional Requirements ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.009.png)**
 
 **Performance Requirements** 
 
@@ -298,4 +322,4 @@ All data within the NITCONF S must be securely stored in a protected database to
 
 among users in the reliability and security of the NITCONF service.. 
 
-[ref1]: Aspose.Words.1d2dfccf-7eae-409d-b068-43cda244be73.003.png
+[ref1]: Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.003.png
