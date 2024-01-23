@@ -308,7 +308,7 @@ Flow of Events:
 Includes - None Notes/Issues - 
 
 
-***Software Requirements Specification for Car Rental Management System  Page 12 ![ref1]***
+******
 
 **4 Other Non-functional Requirements ![](Aspose.Words.7abd845b-3cf7-4f31-8442-68b8b3fe69cc.009.png)**
 
