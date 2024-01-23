@@ -207,7 +207,7 @@ Following a decision, the system shall automatically send notifications to speak
 
 **Login - U1 (Program Committee Member)** 
 
-Author – Rasmiya 
+Author – Ferin,Rasmiya 
 
 Purpose - To log in to the NITCONF  as a Program Committee member. Priority - High. 
 
