@@ -18,7 +18,14 @@
                     <!-- <li id="firstlist">Home</li> -->
                     <li id="firstlist"><a href="#home">Home</a></li>
                     <li><a href="Dashboard.html">Dashboard</a></li>
-                    <li><a href="#about">About</a></li>
+                    <button onclick="goToAboutPage()">About</button>
+
+    <script>
+        function goToAboutPage() {
+            // Navigate to the About Page
+            window.location.href = "about.html";
+        }
+    </script>
                     <li>Logout</li>
                 </ul>
             </div>
