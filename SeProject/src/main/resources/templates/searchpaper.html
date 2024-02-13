@@ -1,0 +1,51 @@
+User
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Papers</title>
+
+    <script>
+        function fetchData(id) {
+            window.location.href = `/dashboard/paperDetails?id=${id}`;
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bgimage">
+        
+        <div class="menu">
+            <div class="leftmenu">
+                <h4> NITC-CONF </h4>
+            </div>
+
+            <div class="rightmenu">
+                <ul class="navlinks">
+                    <!-- <li id="firstlist">Home</li> -->
+                    <li id="firstlist"><a href="#home">Home</a></li>
+                    <li><a href="Dashboard.html">Dashboard</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li>Logout</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="text">
+
+            <h2>Search Papers</h2>
+
+    <form onsubmit="event.preventDefault(); fetchData(document.getElementById('paperId').value);">
+        <label for="paperId">Enter Paper ID:</label>
+        <input type="text" id="paperId" name="id" required>
+        <button class="btn_search" type="submit">Search</button>
+    </form>
+        </div>
+
+    </div>
+
+
+</body>
+</html> 

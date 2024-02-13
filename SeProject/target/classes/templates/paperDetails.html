@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Details</title>
+    <!-- Add your CSS stylesheets or links here if needed -->
+</head>
+<body>
+
+    <h2>Paper Details</h2>
+
+    <!-- Display paper details here -->
+    <p>ID: <span th:text="${papers.id}"></span></p>
+    <p>Submissions: <span th:text="${papers.submissions}"></span></p>
+    <p>Review: <span th:text="${papers.review}"></span></p>
+    <p>Decision: <span th:text="${papers.decision}"></span></p>
+
+    <!-- Buttons for Accept and Reject -->
+    <form action="/dashboard/updateDecision" method="post">
+        <!-- Hidden input fields to pass data to the server -->
+        <input type="hidden" name="id" th:value="${papers.id}" />
+
+        <!-- For Accept button -->
+        <button type="submit" name="decision" value="accept">Accept</button>
+
+        <!-- For Reject button -->
+        <button type="submit" name="decision" value="reject">Reject</button>
+    </form>
+
+    <!-- Button for Assign Review -->
+    <button onclick="showReviewInput()">Assign Review</button>
+
+    <!-- Display textbox for assigning review (initially hidden) -->
+    <div id="reviewInput" style="display:none;">
+        <form action="/dashboard/assignReview" method="post" id="assignReviewForm">
+            <label for="review">Enter Review:</label>
+            <input type="hidden" name="id" th:value="${papers.id}" />
+            <input type="text" id="review" name="review" required>
+            <button type="submit">Assign</button>
+        </form>
+    </div>
+
+    <script>
+        function showReviewInput() {
+            document.getElementById('reviewInput').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
