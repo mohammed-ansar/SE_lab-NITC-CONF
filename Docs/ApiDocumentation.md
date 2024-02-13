@@ -3,19 +3,14 @@
 
 
 ### 1.1 Sign In and Authenticate
-    [POST] /api/auth/signIn
-    To log into a valid account that exists in the
-    database and store the authentication token in a http cookie.
-    (can be accessed by members of program committee)
+    [POST] /api/auth/login
+    To log into an account that we have already registered.
     Headers: None
-    Body: { email:string,
+    Body: { username:string,
             password:string}
     Response: {
-        id: string,
         username: string,
-        email: string,
-        tokenType: string,
-        accessToken: string
+ 	password:string
     }
     
 
@@ -24,111 +19,20 @@
 <br>
 
 ### 1.2 Create an Account
-    [POST] /api/auth/create
-    To create an account and is inserted into the 
-    database (only allowed to the database administrators)
+    [POST] /api/auth/registration
+    To create a new user and is insert it into the 
+    database.
     Headers: None
     Body: { username:string,
-            email:string,
             password:string}
-    Response: {
-        "message": "Account created"
-    }
 ![alt_text](./assets/Signup.png "image_tooltip")
 
 
 <br>
 
-### 1.3 Logout from an Account
-    [POST] /api/auth/logout
-    To logout from an account and delete the cookie storing the 
-    authentication token(only allowed to the database administrators)
-    Headers: None
-    Body: None
-    Response: {
-        "message": "Logout Successful"
-    }
-![alt_text](./assets/logout.png "image_tooltip")
 
-<br>
 
-### 2.1 Sent Link to mail
-    [POST] /api/forgotPassword/sentlink
-    To sent a mail containing the link to the reset password page 
-    to the email given
-    Headers: None
-    Body: {
-        email:string
-    }
-    Response: {
-        "message": "Reset Link Sent to email"
-    }
-![alt_text](./assets/sentlink.png "image_tooltip")
 
-<br>
-
-### 2.2 Password Reset
-    [POST] /api/forgotPassword/updatePassword?token=<token>
-    To change the password of the user having the resetToken derived from the request url
-    Headers: None
-    Body: {
-        password:string
-    }
-    Response: {
-        "message": "PasswordSuccessfully changed"
-    }
-![alt_text](./assets/resetPassword.png "image_tooltip")
-
-### 3.1 Get user profile
-    [GET] /api/profile
-        To display the profile details of the currently logged in user.
-    Headers: None
-    Body: None
-    Response: {
-        id: string,
-        username: string,	
-        email: string,
-        password: idk,
-        contact: string,
-        profession: string,
-        DOJ: date
-        profilePic: byteArray,
-        resetPassswordToken: idk
-    }
-
-![alt_text](./assets/userprofile.jpeg "image_tooltip")
-
-### 3.2 Get profile pic
-    [GET] /api/profile/pic
-    To display the profile picture of the currently logged in user.
-    Headers: None
-    Body: None
-    Response: profile picture in .png format
-
-![alt_text](./assets/getprofilepic.jpeg "image_tooltip")
-
-### 3.3 Update profile
-    [PUT] /api/profile
-    To update the details of the currently logged in user.
-    Headers: None
-    Body: {
-	    username: string,
-	    email: string,
-	    contact: string,
-	    profession: string
-    }
-    Response:  String (“Updated successfully” if success and error message if failed)
-    
-![alt_text](./assets/putprofile.jpeg "image_tooltip")
-
-### 3.4 Update profile pic
-    [PUT] /api/profile/pic
-    To update the profile picture of the currently logged in user.
-    Headers: None
-    Body: Multipart file containing the image in .png format
-    Response: Updated user details
-    
-![alt_text](./assets/putprofilepic.jpeg "image_tooltip")
     
 ### 4.1 Get All Papers
     [GET] /api/paper/all
@@ -210,6 +114,17 @@
             "Paper decision updated successfully"
     
             404 Not Found - If the paper with the specified ID is not found.
+
+### 4.4 Update Reviewer
+    [PUT] /api/dashboard/paperDetails?id=3
+    	Updates the reviewer for a paper(in case the assigned reviewer failed to do the task)
+     	Headers:None
+      	Body:None
+       	Path Parameters:
+		-id: (Integer) ID of the paper
+  	Query Parameters:
+   		-Reviewer: (String) the new decision status (eg.,'faculty1,faculty2')
+     	Response: Page gets reloaded immediately and displays new reviewer.
             
 ![alt_text](./assets/updatedecision.png "image_tooltip")
 
