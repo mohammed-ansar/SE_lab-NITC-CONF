@@ -36,11 +36,33 @@ paths:
 
   paths:
   /api/dashboard/paperDetails/{id}:
+   put:
+      tags:
+      - session-controller
+      summary: view and update paper details
+      description: This endpoint is used to update  and view the paper details
+      operationId: paperdetails
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Page gets reloaded immedietely and displays new reviewer
+          content:
+            '*/*':
+              schema:
+                type: string
+  security:
+      - Bearer Authentication: []
+  /api/dashboard/paperDetails/{id}/assignreview:
     put:
       tags:
       - session-controller
-      summary: Update Reviewer
-      description: This endpoint is used to update the reviewer of the paper
+      summary: assignreviwer
+      description: This endpoint is used to assign the reviewers
       operationId: updateReviewer
       parameters:
       - name: id
