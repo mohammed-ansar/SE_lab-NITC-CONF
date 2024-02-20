@@ -1,0 +1,654 @@
+openapi: 3.0.1
+info:
+  title: NITCONF MODULE 1
+  summary: Author Module
+  description: |-
+    NITCONF is a conferencing website. This repository contains the implementation of the first module of the complete site, which is the author module.
+    The Author module is the interface provided to any user who wants to create and submit their abstracts and take part in the conference
+    This module, although interlinked with the reviewer module and the program committee module, doesn't provide implementation for either of them
+  version: v1
+servers:
+- url: http://localhost:8080
+  description: LocalHost
+- url: https://nitconf-backend.ashyforest-8ec21cce.australiaeast.azurecontainerapps.io
+  description: Azure hosted server
+paths:
+  /api/paper/{id}:
+    get:
+      tags:
+      - session-controller
+      summary: Get Paper
+      description: This endpoint is used to get the details of a Paper by ID
+      operationId: getPaper
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Session'
+      security:
+      - Bearer Authentication: []
+    # put:
+    #   tags:
+    #   - session-controller
+    #   summary: Update Session
+    #   description: This endpoint is used to update the details of a session
+    #   operationId: updateSession
+    #   parameters:
+    #   - name: id
+    #     in: path
+    #     required: true
+    #     schema:
+    #       type: string
+    #   requestBody:
+    #     content:
+    #       application/json:
+    #         schema:
+    #           $ref: '#/components/schemas/SessionRequest'
+    #     required: true
+    #   responses:
+    #     "200":
+    #       description: OK
+    #       content:
+    #         '*/*':
+    #           schema:
+    #             $ref: '#/components/schemas/Session'
+    #   security:
+    #   - Bearer Authentication: []
+  #   delete:
+  #     tags:
+  #     - session-controller
+  #     summary: Delete Session
+  #     description: This endpoint is used to delete a session
+  #     operationId: deleteSession
+  #     parameters:
+  #     - name: id
+  #       in: path
+  #       required: true
+  #       schema:
+  #         type: string
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: string
+  #     security:
+  #     - Bearer Authentication: []
+  # /api/session/status/rejected/{id}:
+  paths:
+  /api/dashboard/paperDetails/{id}:
+    put:
+      tags:
+      - session-controller
+      summary: Update Reviewer
+      description: This endpoint is used to update the reviewer of the paper
+      operationId: updateReviewer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Page gets reloaded immedietely and displays new reviewer
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+      - Bearer Authentication: []
+  /api/paper/updateDecision/{id}:
+    put:
+      tags:
+      - session-controller
+      summary: Update Status to Accepted or Rejected
+      description: This endpoint is used to update the status of a session to ACCEPTED or REJUCTED
+      operationId: updateStatus
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+      - Bearer Authentication: []
+  /api/dashboard:
+    get:
+      tags:
+      - session-controller
+      summary: Go to dashboard
+      description: This endpoint is used to get the latest papers and also all papers 
+      operationId: Dashboard
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+      security:
+      - Bearer Authentication: []
+  /api/home:
+    get:
+      tags:
+      - session-controller
+      summary: open home page
+      description: This endpoint is used to go to dashboard  
+      operationId: homePage
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+      security:
+      - Bearer Authentication: []
+  
+       
+
+    # put:
+    #   tags:
+    #   - session-controller
+    #   summary: Upload PDF
+    #   description: This endpoint is used to upload a pdf file to a session
+    #   operationId: uploadPdf
+    #   parameters:
+    #   - name: id
+    #     in: path
+    #     required: true
+    #     schema:
+    #       type: string
+    #   requestBody:
+    #     content:
+    #       application/json:
+    #         schema:
+    #           required:
+    #           - file
+    #           type: object
+    #           properties:
+    #             file:
+    #               type: string
+    #               format: binary
+    #   responses:
+    #     "200":
+    #       description: OK
+    #       content:
+    #         '*/*':
+    #           schema:
+    #             type: object
+    #   security:
+    #   - Bearer Authentication: []
+  # /api/profile:
+  #   get:
+  #     tags:
+  #     - profile-controller
+  #     summary: Profile Details
+  #     description: This endpoint is used to get the profile details of the currently
+  #       logged in user
+  #     operationId: profileDetails
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               $ref: '#/components/schemas/User'
+  #     security:
+  #     - Bearer Authentication: []
+  #   put:
+  #     tags:
+  #     - profile-controller
+  #     summary: Update Profile
+  #     description: This endpoint is used to update the profile details of the currently
+  #       logged in user
+  #     operationId: updateProfile
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ProfileRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: object
+  #     security:
+  #     - Bearer Authentication: []
+  # /api/email/reset/{token}:
+  #   put:
+  #     tags:
+  #     - email-controller
+  #     summary: Reset Password
+  #     description: This endpoint is used to reset the password of the user
+  #     operationId: resetPassword
+  #     parameters:
+  #     - name: token
+  #       in: path
+  #       required: true
+  #       schema:
+  #         type: string
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ResetRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: string
+  # /api/tags:
+  #   get:
+  #     tags:
+  #     - tag-controller
+  #     summary: Find All Tags
+  #     description: This endpoint is used to find all the tags in the database
+  #     operationId: FindAll
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: '#/components/schemas/Tag'
+  #     security:
+  #     - Bearer Authentication: []
+  #   post:
+  #     tags:
+  #     - tag-controller
+  #     summary: New Tag
+  #     description: This endpoint is used to create a new tag
+  #     operationId: newtag
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/TagRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               $ref: '#/components/schemas/Tag'
+  #     security:
+  #     - Bearer Authentication: []
+  # /api/session:
+  #   get:
+  #     tags:
+  #     - session-controller
+  #     summary: Get All Sessions
+  #     description: This endpoint is used to get all the sessions of the currently
+  #       logged in user
+  #     operationId: getAllSessions
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: array
+  #               items:
+  #                 $ref: '#/components/schemas/Session'
+  #     security:
+  #     - Bearer Authentication: []
+  #   post:
+  #     tags:
+  #     - session-controller
+  #     summary: New Session
+  #     description: This endpoint is used to create a new session
+  #     operationId: newSession
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/SessionRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               $ref: '#/components/schemas/Session'
+  #     security:
+  #     - Bearer Authentication: []
+  # /api/review/{id}:
+  #   get:
+  #     tags:
+  #     - review-controller
+  #     summary: Get Review
+  #     description: This endpoint is used to get the details of a review
+  #     operationId: getReview
+  #     parameters:
+  #     - name: id
+  #       in: path
+  #       required: true
+  #       schema:
+  #         type: string
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               $ref: '#/components/schemas/Review'
+  #     security:
+  #     - Bearer Authentication: []
+  #   post:
+  #     tags:
+  #     - review-controller
+  #     summary: Create Review (extended support)
+  #     description: This endpoint is used to create a review for a particular abstract
+  #     operationId: createReview
+  #     parameters:
+  #     - name: id
+  #       in: path
+  #       required: true
+  #       schema:
+  #         type: string
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ReviewRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: string
+  #     security:
+  #     - Bearer Authentication: []
+  # /api/email/reset:
+  #   post:
+  #     tags:
+  #     - email-controller
+  #     summary: Reset Email
+  #     description: This endpoint is send the reset password link to the user's email
+  #     operationId: resetEmail
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ResendRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: string
+  # /api/email/resend:
+  #   post:
+  #     tags:
+  #     - email-controller
+  #     summary: Resend Email
+  #     description: This endpoint is used to resend the verification email to the user
+  #     operationId: resendEmail
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/ResendRequest'
+  #       required: true
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           '*/*':
+  #             schema:
+  #               type: string
+  /api/registration:
+    post:
+      tags:
+      - auth-controller
+      summary: Register
+      description: This endpoint is used to create a new account for the user
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+  /api/login:
+    post:
+      tags:
+      - auth-controller
+      summary: Login
+      description: This endpoint is used to login to the account
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+ 
+components:
+  schemas:
+    SessionRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        level:
+          type: string
+          enum:
+          - BEGINNER
+          - INTERMEDIATE
+          - ADVANCED
+          - EXPERT
+        status:
+          type: string
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+        tags:
+          type: array
+          items:
+            type: string
+    DocumentVersion:
+      required:
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+        changesDesc:
+          type: string
+        version:
+          type: integer
+          format: int32
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    GrantedAuthority:
+      type: object
+      properties:
+        authority:
+          type: string
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+        reviewer:
+          $ref: '#/components/schemas/User'
+        comment:
+          type: string
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        level:
+          type: string
+          enum:
+          - BEGINNER
+          - INTERMEDIATE
+          - ADVANCED
+          - EXPERT
+        status:
+          type: string
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+        date:
+          type: string
+          format: date-time
+        documentVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentVersion'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        submission:
+          type: string
+        reviewer:
+          type: string
+        dicision:
+          type: string
+          # enum:
+          # - PROGRAM_COMMITTEE
+        isVerified:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+    ProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+    ResetRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    TagRequest:
+      type: object
+      properties:
+        title:
+          type: string
+    ReviewRequest:
+      type: object
+      properties:
+        comment:
+          type: string
+    ResendRequest:
+      type: object
+      properties:
+        email:
+          type: string
+    RegisterRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phoneNumber:
+          type: string
+    AuthenticationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    AuthenticationRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    Bearer Authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
