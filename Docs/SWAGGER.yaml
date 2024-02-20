@@ -135,6 +135,26 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/AuthenticationResponse'
+  
+    get:
+      tags:
+      - auth-controller
+      summary: Register
+      description: This endpoint is used to create a new account for the user
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
   /api/login:
     post:
       tags:
