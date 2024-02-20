@@ -1,0 +1,336 @@
+openapi: 3.0.1
+info:
+  title: NITCONF MODULE 3
+  summary: Author Module
+  description: |-
+    NITCONF is a website where students can submit their works,and faculty can review it and program committee can supervise the whole process. This repository contains the implementation of the third module of the complete site, which is the author module.
+    The program committee module is the interface provided to all program committee members who wants to accept or rejecct papers based on reviews,and change the reviewer for any paper.here we have used some dummy data because we have not linked our module to other modules.
+  version: v1
+servers:
+- url: http://localhost:8080
+  description: LocalHost
+  
+paths:
+  /api/paper/{id}:
+    get:
+      tags:
+      - session-controller
+      summary: Get Paper
+      description: This endpoint is used to get the details of a Paper by ID
+      operationId: getPaper
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Session'
+      security:
+      - Bearer Authentication: []
+
+  paths:
+  /api/dashboard/paperDetails/{id}:
+    put:
+      tags:
+      - session-controller
+      summary: Update Reviewer
+      description: This endpoint is used to update the reviewer of the paper
+      operationId: updateReviewer
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Page gets reloaded immedietely and displays new reviewer
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+      - Bearer Authentication: []
+  /api/paper/updateDecision/{id}:
+    put:
+      tags:
+      - session-controller
+      summary: Update Status to Accepted or Rejected
+      description: This endpoint is used to update the status of a session to ACCEPTED or REJUCTED
+      operationId: updateStatus
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+      security:
+      - Bearer Authentication: []
+  /api/dashboard:
+    get:
+      tags:
+      - session-controller
+      summary: Go to dashboard
+      description: This endpoint is used to get the latest papers and also all papers 
+      operationId: Dashboard
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+      security:
+      - Bearer Authentication: []
+  /api/home:
+    get:
+      tags:
+      - session-controller
+      summary: open home page
+      description: This endpoint is used to go to dashboard  
+      operationId: homePage
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+      security:
+      - Bearer Authentication: []
+  
+       
+  /api/registration:
+    post:
+      tags:
+      - auth-controller
+      summary: Register
+      description: This endpoint is used to create a new account for the user
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+  /api/login:
+    post:
+      tags:
+      - auth-controller
+      summary: Login
+      description: This endpoint is used to login to the account
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+ 
+components:
+  schemas:
+    SessionRequest:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        level:
+          type: string
+          enum:
+          - BEGINNER
+          - INTERMEDIATE
+          - ADVANCED
+          - EXPERT
+        status:
+          type: string
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+        tags:
+          type: array
+          items:
+            type: string
+    DocumentVersion:
+      required:
+      - version
+      type: object
+      properties:
+        id:
+          type: string
+        changesDesc:
+          type: string
+        version:
+          type: integer
+          format: int32
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    GrantedAuthority:
+      type: object
+      properties:
+        authority:
+          type: string
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+        reviewer:
+          $ref: '#/components/schemas/User'
+        comment:
+          type: string
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        language:
+          type: string
+        level:
+          type: string
+          enum:
+          - BEGINNER
+          - INTERMEDIATE
+          - ADVANCED
+          - EXPERT
+        status:
+          type: string
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+        date:
+          type: string
+          format: date-time
+        documentVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentVersion'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        submission:
+          type: string
+        reviewer:
+          type: string
+        dicision:
+          type: string
+        isVerified:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GrantedAuthority'
+    ProfileRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+    ResetRequest:
+      type: object
+      properties:
+        password:
+          type: string
+    TagRequest:
+      type: object
+      properties:
+        title:
+          type: string
+    ReviewRequest:
+      type: object
+      properties:
+        comment:
+          type: string
+    ResendRequest:
+      type: object
+      properties:
+        email:
+          type: string
+    RegisterRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phoneNumber:
+          type: string
+    AuthenticationResponse:
+      type: object
+      properties:
+        token:
+          type: string
+    AuthenticationRequest:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+  securitySchemes:
+    Bearer Authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
