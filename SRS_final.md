@@ -22,9 +22,9 @@
 
 2. Overall Description  
 
-`   `Product Overview  Product Functionality   3. 
+`   `Product Overview  Product Functionality   
 
-Specific Requirements 
+3. Specific Requirements 
 
 External Interface Requirements  
 
@@ -36,7 +36,7 @@ User Interfaces
 
 `   `Use Case Model  
 
-4\. Other Non-functional Requirements  
+4. Other Non-functional Requirements  
 
 `   `Performance Requirements  
 
