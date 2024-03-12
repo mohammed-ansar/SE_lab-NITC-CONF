@@ -1,5 +1,7 @@
 package com.seproject.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,9 @@ public class PapersService {
 		return paperRepo.save(paper);
 	}
 	
+    public List<Papers> getAllPapers() {
+        return paperRepo.findAll();
+    }
 
 
 	
