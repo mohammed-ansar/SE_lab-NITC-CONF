@@ -1,5 +1,7 @@
 package com.seproject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -64,7 +66,7 @@ public class PapersController {
     	return "Dashboard.html";
     }
 	
-	@GetMapping("updatePapers/{id}") 
+	@PutMapping("updatePapers/{id}") 
 	public Papers updatePapers(@PathVariable int id, @RequestBody Papers paper) {
 		paper.setId(id);
 		return paperService.updatePapers(paper);
@@ -157,5 +159,16 @@ public class PapersController {
 	        }
 	    }
 
+	    @GetMapping("/getAllPapers")
+	    public String getAllPapers(Model model) {
+	        // Retrieve all papers from the service
+	        List<Papers> papersList = paperService.getAllPapers();
+	        
+	        // Add papersList to the model
+	        model.addAttribute("papersList", papersList);
+	        
+	        // Return the view name (all.html)
+	        return "all";
+	    }
 
 }
