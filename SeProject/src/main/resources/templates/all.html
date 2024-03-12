@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Papers</title>
+    <!-- Add your CSS stylesheets or links here if needed -->
+</head>
+<body>
+
+    <h2>All Papers</h2>
+
+    <!-- Display table for all papers -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Submissions</th>
+                <th>Review</th>
+                <th>Decision</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over papersList and display each paper -->
+            <tr th:each="paper : ${papersList}">
+                <td th:text="${paper.id}"></td>
+                <td th:text="${paper.submissions}"></td>
+                <td th:text="${paper.review}"></td>
+                <td th:text="${paper.decision}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
