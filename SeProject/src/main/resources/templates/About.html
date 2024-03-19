@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+</head>
+<body>
+    <div class="bgimage">
+        <div class="menu">
+            <div class="leftmenu">
+                <h4> NITC-CONF </h4>
+            </div>
+
+            <div class="rightmenu">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <form action="#" th:action="@{/home}" method="get">
+            <button class="button" type="submit">Home</button>
+        </form>
+              </li>
+              <li class="nav-item">
+                <form action="#" th:action="@{/dashboard}" method="get">
+                  <button class="button" type="submit">Dashboard</button>
+              </form>              </li>
+              <li class="nav-item">
+                <form action="#" th:action="@{/getAllReviewers}" method="get">
+            <button class="button" type="submit">Reviewers</button>
+        </form>
+              </li>
+            </ul>
+            </div>
+
+        </div>
+        <div class="aboutPage">
+            <h1>About</h1>
+    <p>This is a very good website for a normal school or college work,
+        expesialy for assignment and note submission .It is very use full 
+        for teachers and faculty ,those who are very sad about their reviewing 
+        student's notes and assignments. </p>
+        </div>
+    </div>
+    <!-- <div class="text"> -->
+    <!-- </div> -->
+</body>
+</html>
