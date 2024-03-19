@@ -18,9 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.seproject.entity.Paper;
 import com.seproject.entity.Papers;
+import com.seproject.entity.Reviewers;
 import com.seproject.entity.User;
-import com.seproject.service.PapersService;
+import com.seproject.service.PaperService;
+import com.seproject.service.ReviewersService;
 import com.seproject.service.UserService;
 
 
@@ -28,12 +31,17 @@ import com.seproject.service.UserService;
 @Controller
 public class PapersController {
 	
+
+	
 	@Autowired
-	private PapersService paperService;
+	private PaperService paperService;
+	
+	@Autowired
+	private ReviewersService reviewersService;
 	
 
 	@PutMapping("/addPapers")
-	public Papers postDetails(@RequestBody Papers paper) {
+	public Paper postDetails(@RequestBody Paper paper) {
 		return paperService.saveDetails(paper);
 	}
 	
@@ -46,10 +54,10 @@ public class PapersController {
 	
     @GetMapping("/dashboard/getPapers/{id}") 
     public ModelAndView fetchDetailsByIdfromwebpage(@PathVariable int id) {
-        Papers papers = paperService.getPapersDetailsById(id);
+        Paper paper = paperService.getPaperDetailsById(id);
 
         ModelAndView modelAndView = new ModelAndView("paperDetails"); // Assuming "paperDetails" is the name of your HTML template
-        modelAndView.addObject("papers", papers);
+        modelAndView.addObject("paper", paper);
 
         return modelAndView;
     }
@@ -65,12 +73,17 @@ public class PapersController {
     public String dashboard() {
     	return "Dashboard.html";
     }
+    
+    @GetMapping("/About")
+    public String about() {
+    	return "About.html";
+    }
 	
-	@PutMapping("updatePapers/{id}") 
+/*	@PutMapping("updatePapers/{id}") 
 	public Papers updatePapers(@PathVariable int id, @RequestBody Papers paper) {
 		paper.setId(id);
 		return paperService.updatePapers(paper);
-	}
+	}	*/
 	
 	   @GetMapping("/searchPapers")
 	    public String searchPapersPage() {
@@ -79,21 +92,48 @@ public class PapersController {
 
 	    @GetMapping("/dashboard/paperDetails")
 	    public ModelAndView fetchDetailsByIdfromwebpage2(@RequestParam int id) {
-	        Papers papers = paperService.getPapersDetailsById(id);
+	        Paper paper = paperService.getPaperDetailsById(id);
 
 	        ModelAndView modelAndView = new ModelAndView("paperDetails");
-	        modelAndView.addObject("papers", papers);
+	        modelAndView.addObject("paper", paper);
 
 	        return modelAndView;
 	    }
+	    
+
+	    @PostMapping("/dashboard/assignReviewer")
+	    public ModelAndView assignReviewer(@RequestParam int paperId, @RequestParam String reviewerName) {
+	        // Get the paper
+	        Paper paper = paperService.getPaperDetailsById(paperId);
+
+	        // Update paper details
+	        paper.setReviewer(reviewerName);
+	        paper.setState("assigned");
+	        paperService.updatePaper(paper);
+
+	        // Redirect back to paperDetails page
+	        ModelAndView modelAndView = new ModelAndView("redirect:/dashboard/getPapers/" + paperId);
+	        return modelAndView;
+	    }
+
+
+
 
 	    @PostMapping("/dashboard/updateDecision")
 	    public ModelAndView updateDecision(@RequestParam int id, @RequestParam String decision) {
-	        Papers paper = paperService.getPapersDetailsById(id);
+	        Paper paper = paperService.getPaperDetailsById(id);
 
-	        // Update the decision
-	        paper.setDecision(decision);
-	        paperService.updatePapers(paper);
+	        // Update the decision and decision state based on user action
+	        if (decision.equals("accepted")) {
+	            paper.setDecision("accepted");
+	            paper.setDecision_state("decided");
+	        } else if (decision.equals("rejected")) {
+	            paper.setDecision("rejected");
+	            paper.setDecision_state("decided");
+	        }
+
+	        // Save the updated paper
+	        paperService.updatePaper(paper);
 
 	        // Redirect back to paperDetails page
 	        ModelAndView modelAndView = new ModelAndView("redirect:/dashboard/getPapers/" + id);
@@ -102,11 +142,11 @@ public class PapersController {
 	    
 	    @PostMapping("/dashboard/assignReview")
 	    public String assignReview(@RequestParam int id, @RequestParam String review) {
-	        Papers paper = paperService.getPapersDetailsById(id);
+	        Paper paper = paperService.getPaperDetailsById(id);
 
 	        // Update the review
 	        paper.setReview(review);
-	        paperService.updatePapers(paper);
+	        paperService.updatePaper(paper);
 
 	        // Redirect back to paperDetails page
 	        return "redirect:/dashboard/getPapers/" + id;
@@ -162,13 +202,25 @@ public class PapersController {
 	    @GetMapping("/getAllPapers")
 	    public String getAllPapers(Model model) {
 	        // Retrieve all papers from the service
-	        List<Papers> papersList = paperService.getAllPapers();
+	        List<Paper> paperList = paperService.getAllPapers();
 	        
 	        // Add papersList to the model
-	        model.addAttribute("papersList", papersList);
+	        model.addAttribute("paperList", paperList);
 	        
 	        // Return the view name (all.html)
 	        return "all";
+	    }
+	    
+	    @GetMapping("/getAllReviewers")
+	    public String getAllReviewers(Model model) {
+	        // Retrieve all papers from the service
+	        List<Reviewers> reviewersList = reviewersService.getAllReviewers();
+	        
+	        // Add papersList to the model
+	        model.addAttribute("reviewersList", reviewersList);
+	        
+	        // Return the view name (all.html)
+	        return "Reviewers";
 	    }
 
 }
