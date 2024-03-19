@@ -1,5 +1,5 @@
 package com.seproject.config;
-
+//maven chech
 import com.seproject.entity.User;
 import com.seproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
