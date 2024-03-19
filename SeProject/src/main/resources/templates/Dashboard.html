@@ -1,56 +1,87 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <!-- Add Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add your custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <head>
-        <link rel="stylesheet" href="style.css">
-        
-      </head>
-      
-
     <div class="bgimage">
-        
-        <div class="menu">
-            <div class="leftmenu">
-                <h4> NITC-CONF </h4>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">NITC-CONF</a>
+                  <button class="navbar-dark navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="navbar-dark collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <form action="#" th:action="@{/home}" method="get">
+                    <button class="button" type="submit">Home</button>
+                </form>
+                      </li>
+                      <li class="nav-item">
+                        <a id="firstlist" class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                      </li>
+                      <li class="nav-item">
+                      	<form action="#" th:action="@{/getAllReviewers}" method="get">
+                    <button class="button" type="submit">Reviewers</button>
+                </form>
+                      </li>
+                      <li class="nav-item">
+                      	<form action="#" th:action="@{/About}" method="get">
+                    <button class="button" type="submit">About</button>
+                </form>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            <!-- <div class="menu">
+                <div class="leftmenu">
+                    <!- <h4> NITC-CONF </h4> -->
+                    <!-- <nav class="navbar">
+                        <div class="container-fluid">
+                          <span class="navbar mb-0 h1">NITC-CONF</span>
+                        </div>
+                      </nav>
+                </div> -->
+                <!-- <div class="rightmenu">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="SE_lab.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Dashboard">Dashboard</a></li>
+                        <li class="nav-item form-button">
+                            <form action="#" th:action="@{/getAllReviewers}" method="get">
+                                <button class="btn btn-outline-light" type="submit">Reviewers</button>
+                            </form>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    </ul>
+                </div> -->
+            <!-- </div> -->
+            <div class="text">
+                <h4>CREATE * DESIGN * SUBMIT </h4>
+                <h1> PC Dashboard</h1>
+                <h3> YOU CAN assess or review papers </h3>
+                <form action="#" th:action="@{/getAllPapers}" method="get">
+                  <button class="btn btn-outline-light" type="submit">Get All Papers</button>
+              </form>
+                <form action="#" th:action="@{/getAllReviewers}" method="get">
+                    <button class="btn btn-outline-light" type="submit">Get All Reviewers</button>
+                </form>
             </div>
-
-            <div class="rightmenu">
-                <ul>
-                    <!-- <li id="firstlist">Home</li> -->
-                    <li id="firstlist"><a href="/home">Home</a></li>
-                    <li><a href="#Dashboard">Dashboard</a></li>
-                    <li>About </li>
-                    <li>Logout</li>
-                </ul>
-            </div>
-
         </div>
-        <div class="text">
-
-            <h4>CREATE * DESIGN * SUBMIT </h4>
-            <h1> PC Dashboard</h1>
-            <h3> YOU CAN assess or review papers </h3>
-         <!--   <button class="btn"> View all</button>  -->
-            <!-- <button onclick="fetchData()">Fetch Data</button>
-
-     <script>
-        function fetchData() {
-            fetch('getPapers/6')
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Data from backend:', data);
-                    // Handle the data as needed
-                })
-                .catch(error => console.error('Error fetching data:', error));
-        }
-    </script>	 -->
-            <button class="btn"><a href="/searchPapers"> Choose 
-            paper </a></button>
-        </div>
-
     </div>
-    <form action="#" th:action="@{/getAllPapers}" method="get">
-    <button type="submit">Get All Papers</button>
-</form>
+                   <!--  <form action="#" th:action="@{/About}" method="get">
+                  <button class="btn btn-outline-light" type="submit">About</button>
+              </form> -->
     
-    <!-- /* coding with nick */ -->
+    <!-- Add Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
