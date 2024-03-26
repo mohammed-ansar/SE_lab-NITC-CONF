@@ -109,9 +109,9 @@ public class Paper {
 		Decision = decision;
 	}
 	
-	public Paper() {
+	// public Paper() {
 		
-	}
+	// }
 	
    public Paper(int id, String submission, String Department, String state, String reviewer, String review_state, String review, String decision_state, String Decision) {
         this.id = id;
