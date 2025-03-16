@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Reviewers</title>
+    <!-- Add your CSS stylesheets or links here if needed -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+        .bgimage {
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),url("FERIN.jpg");
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .allReviewer {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto; /* Enable horizontal scrolling for small screens */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        @media screen and (max-width: 600px) {
+            /* Adjust table layout for small screens */
+            table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bgimage">
+        <div class="allReviewer">
+            <h2>All Reviewers</h2>
+
+    <!-- Display table for all reviewers -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate over reviewersList and display each reviewer -->
+            <tr th:each="reviewer : ${reviewersList}">
+                <td th:text="${reviewer.id}">1</td>
+                <td th:text="${reviewer.name}">Lahin</td> <!-- Corrected attribute name from 'reviewer.Name' to 'reviewer.name' -->
+                <td th:text="${reviewer.department}">CSE</td>
+                <td th:text="${reviewer.email}">lahin@gmail.com</td>
+            </tr>
+        </tbody>
+    </table>
+        </div>
+    </div>
+
+</body>
+</html>

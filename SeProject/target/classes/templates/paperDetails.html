@@ -1,51 +1,423 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paper Details</title>
-    <!-- Add your CSS stylesheets or links here if needed -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Paper Details</title>
+<!-- Add Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+	rel="stylesheet" />
+<!-- Add your CSS stylesheets or links here if needed -->
+<link rel="stylesheet" href="style.css" />
+<style>
+/* Custom CSS to change table content color to white */
+.table td, .table th {
+	color: white;
+}
+
+h2 {
+	color: white;
+}
+	*{
+
+    margin: 0px;
+    padding: 0px;
+}
+.bgimage{
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),url("FERIN.jpg");
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+}
+.menu{
+    width: 100%;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.leftmenu{
+    width: 22%;
+    line-height: 100Px;
+    float: left;
+}
+.leftmenu h4{
+    padding-left: 70px;
+    font-weight: bold;
+    color: lightcoral;
+    font-size: 30px;
+    font-family: 'montserrat', sans-serif;
+}
+.navbar-brand {
+    font-weight: bold;
+    color: lightcoral;
+    font-size: 30px;
+    font-family: 'montserrat', sans-serif;
+
+
+}
+.navbar-collapse {
+    float: right;
+    width: 60%;
+}
+.navbar-collapse ul {
+    margin-left: 50%;
+    /* padding-left: 20px; */
+}
+.navbar-collapse ul li {
+    /* color: white; */
+    display: inline-block;
+    font-family: 'montserrat', sans-serif ;
+    list-style: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    padding-right: 30px;
+
+}
+.navbar-nav .nav-item .nav-link:hover {
+    color:#00ccff;
+}
+.nav-link {
+    /* float: right; */
+    padding-left: 10px;
+    margin-left: 10px;
+}
+
+li.nav-item {
+    display: inline-block; 
+    list-style: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    padding-right: 30px;
+}
+
+/* button to appear like a link */
+li.nav-item button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: white; 
+    text-decoration: none;
+    display: inline-block; 
+    list-style: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    padding-top: 10px; 
+}
+
+li.nav-item button:hover {
+    color: #00ccff;
+}
+/* .nav-link:hover {
+    color: #00ccff;
+} */
+.rightmenu{
+    width: 60%;
+    height: 100Px;
+    float: right;
+}
+.rightmenu ul{
+    margin-left: 200px;
+}
+.rightmenu a{
+    color: inherit; /* Inherit the color from the parent element */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+}
+.rightmenu ul li{
+    display: inline-block;
+    font-family: 'montserrat', sans-serif ;
+    list-style: none;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    line-height: 100px;
+    margin-left: 40px;
+    text-transform: uppercase;
+    cursor: pointer;
+    /* text-decoration: none; Remove underline */
+    /* cursor: text; */
+}
+.rightmenu ul li:hover{
+    color: #00ccff;
+    /* text-decoration: none; /* Remove underline */
+    /* cursor: text;  */
+}
+#firstlist{
+   color: #00ccff;
+   /* text-decoration: none; /* Remove underline */
+    /* cursor: text;   */
+}
+.text{
+   
+    width: 100%;
+    margin-top:185px ;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+
+}
+.text h4{
+    font-size: 14px;
+    font-family: 'open sans', sans-serif;
+}
+.text h1{
+    font-size: 62px;
+    font-family: 'montserrat', sans-serif ;
+    font-weight: 700px;
+    margin: 14px 0px;
+}
+.text h3{
+    font-size: 15px;
+    font-family: 'open sans', sans-serif;
+}
+.btn{
+    background-color: rgba(255,255,255, 0.164);
+    color: white;
+    font-family: 'montserrat', sans-serif ;
+    border: none;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 40px;
+    width: 209px;
+    margin-top: 25px;
+    border: 3px solid white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn a{
+	color: white;
+	text-decoration: none;
+}
+.btn:hover{
+    background-color: white;
+    color: black;
+}
+.btn:hover a{
+    /* background-color: white; */
+    color: black;
+}
+
+.btn_search{
+	background-color: rgba(255,255,255, 0.164);
+  color: white;
+  font-family: 'montserrat', sans-serif;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 20px;
+  width: 80px;
+  margin-top: 25px;
+  border: 2px solid white;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 15px;
+}
+.btn_search:hover{
+    background-color: white;
+    color: black;
+}
+
+.assignButton{
+    background-color: rgba(255,255,255, 0.164);
+    color: white;
+    font-family: 'montserrat', sans-serif ;
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 30px;
+    width: 125px;
+    margin-top: 1px;
+    border: 1px solid white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.assignButton:hover{
+    background-color: #00ccff;
+    color: black;
+}
+
+.allPapers{
+    color: white;
+    margin-left: 410px;
+    padding-top: 60px;
+    padding-left: 70px;
+}
+
+li.form-button {
+    display: inline; 
+    margin-right: 10px; 
+}
+
+/* button to appear like a link */
+li.form-button button {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    color: white; 
+    text-decoration: none; 
+}
+
+li.form-button button:hover {
+    color: #00ccff;
+}
+
+.aboutPage {
+    color: white;
+    /* margin-left: 400px; */
+    padding-top: 60px;
+    /* padding-left: 40px; */
+    text-align: center;
+}
+
+.aboutPage h1{
+    font-size: 62px;
+    font-family: 'montserrat', sans-serif ;
+    font-weight: 700px;
+    margin: 14px 0px;
+}
+
+.allReviewer {
+    color: white;
+}
+
+.AllPapers {
+    color: white;
+}
+
+ /* table th, table td {
+    color: white;
+} */
+</style>
 </head>
 <body>
+	<div class="bgimage">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">NITC-CONF</a>
+					<button class="navbar-dark navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="navbar-dark collapse navbar-collapse"
+						id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<form action="#" th:action="@{/home}" method="get">
+									<button class="button" type="submit">Home</button>
+								</form>
+							</li>
+							<li class="nav-item">
+								<form action="#" th:action="@{/dashboard}" method="get">
+									<button class="button" type="submit">Dashboard</button>
+								</form>
+							</li>
+							<li class="nav-item">
+								<form action="#" th:action="@{/getAllReviewers}" method="get">
+									<button class="button" type="submit">Reviewers</button>
+								</form>
+							</li>
+							<li class="nav-item">
+								<form action="#" th:action="@{/About}" method="get">
+									<button class="button" type="submit">About</button>
+								</form>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div class="container mt-4">
+				<h2 class="mt-5">Paper Details</h2>
 
-    <h2>Paper Details</h2>
+				<!-- Display table for paper details -->
+				<table class="table table-bordered">
+					<tbody>
+						<!-- Display each paper detail -->
+						<tr>
+							<td><strong>ID:</strong></td>
+							<td th:text="${paper.id}"></td>
+						</tr>
+						<tr>
+							<td style="color: white;"><strong>Submission:</strong></td>
+							<td th:text="${paper.submission}"></td>
+						</tr>
+						<tr>
+							<td><strong>Department:</strong></td>
+							<td th:text="${paper.department}"></td>
+						</tr>
+						<tr>
+							<td><strong>State:</strong></td>
+							<td th:text="${paper.state}"></td>
+						</tr>
+						<!-- Button for assigning reviewer -->
+						<tr th:if="${paper.state eq 'not assigned'}">
+							<td></td>
+							<td>
+								<form action="/dashboard/assignReviewer" method="post">
+									<input type="hidden" name="paperId" th:value="${paper.id}" />
+									<input type="text" name="reviewerName"
+										placeholder="Enter Reviewer Name" required />
+									<button class="assignButton" type="submit">Assign
+										Reviewer</button>
+								</form>
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Reviewer:</strong></td>
+							<td th:text="${paper.reviewer}"></td>
+						</tr>
+						<tr>
+							<td><strong>Review State:</strong></td>
+							<td th:text="${paper.review_state}"></td>
+						</tr>
+						<tr>
+							<td><strong>Review:</strong></td>
+							<td th:text="${paper.review}"></td>
+						</tr>
+						<tr>
+							<td><strong>Decision:</strong></td>
+							<td th:text="${paper.decision}"></td>
+						</tr>
+						<tr>
+							<td><strong>Decision State:</strong></td>
+							<td th:text="${paper.decision_state}"></td>
+						</tr>
+						<!-- Conditional buttons for making decision -->
+						<tr
+							th:if="${paper.state eq 'assigned' and paper.decision_state eq 'not decided'}">
+							<td></td>
+							<td>
+								<form action="/dashboard/updateDecision" method="post">
+									<input type="hidden" name="id" th:value="${paper.id}" />
+									<button class="assignButton" type="submit" name="decision"
+										value="accepted">Accept</button>
+									<button class="assignButton" type="submit" name="decision"
+										value="rejected">Reject</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
-    <!-- Display paper details here -->
-    <p>ID: <span th:text="${papers.id}"></span></p>
-    <p>Submissions: <span th:text="${papers.submissions}"></span></p>
-    <p>Review: <span th:text="${papers.review}"></span></p>
-    <p>Decision: <span th:text="${papers.decision}"></span></p>
-
-    <!-- Buttons for Accept and Reject -->
-    <form action="/dashboard/updateDecision" method="post">
-        <!-- Hidden input fields to pass data to the server -->
-        <input type="hidden" name="id" th:value="${papers.id}" />
-
-        <!-- For Accept button -->
-        <button type="submit" name="decision" value="accept">Accept</button>
-
-        <!-- For Reject button -->
-        <button type="submit" name="decision" value="reject">Reject</button>
-    </form>
-
-    <!-- Button for Assign Review -->
-    <button onclick="showReviewInput()">Assign Review</button>
-
-    <!-- Display textbox for assigning review (initially hidden) -->
-    <div id="reviewInput" style="display:none;">
-        <form action="/dashboard/assignReview" method="post" id="assignReviewForm">
-            <label for="review">Enter Review:</label>
-            <input type="hidden" name="id" th:value="${papers.id}" />
-            <input type="text" id="review" name="review" required>
-            <button type="submit">Assign</button>
-        </form>
-    </div>
-
-    <script>
-        function showReviewInput() {
-            document.getElementById('reviewInput').style.display = 'block';
-        }
-    </script>
-
+	<!-- JavaScript function for assigning reviewer -->
+	<!-- Add Bootstrap JS -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
